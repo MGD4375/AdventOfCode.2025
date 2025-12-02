@@ -79,10 +79,7 @@ public static class Day1
                     if (currentValue >= modValue) currentValue -= modValue;
                 }
 
-                if (currentValue == 0)
-                {
-                    timesCrossedZero++;
-                }
+                if (currentValue == 0) timesCrossedZero++;
             }
 
             yield return timesCrossedZero;
