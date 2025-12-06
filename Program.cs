@@ -2,4 +2,4 @@
 
 using AdventOfCode._2025.Day1;
 
-Day5.Part2();
+Day6.Part2();

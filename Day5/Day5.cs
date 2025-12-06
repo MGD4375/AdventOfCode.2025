@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-
-namespace AdventOfCode._2025.Day1;
+﻿namespace AdventOfCode._2025.Day1;
 
 public static class Day5
 {
@@ -44,8 +42,8 @@ public static class Day5
 
         var adjustedRanges = ranges
             .Aggregate(
-                seed: (ranges: new List<(long left, long right)>(), currentMin: 0L),
-                func: (acc, range) =>
+                (ranges: new List<(long left, long right)>(), currentMin: 0L),
+                (acc, range) =>
                 {
                     if (range.right < acc.currentMin)
                         return acc;
@@ -58,8 +56,7 @@ public static class Day5
                 })
             .ranges;
 
-        var count = adjustedRanges.Sum(r => (r.right + 1) - r.left);
+        var count = adjustedRanges.Sum(r => r.right + 1 - r.left);
         Console.WriteLine(count);
     }
 }
-

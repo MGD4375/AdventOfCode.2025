@@ -19,10 +19,7 @@ public static class Day3
         for (var i = 9; i >= 0; i--)
         {
             indexOf = leftSide.IndexOf(i.ToString(), StringComparison.Ordinal);
-            if (indexOf != -1)
-            {
-                break;
-            }
+            if (indexOf != -1) break;
         }
 
         var rightSide = bank[(indexOf + 1)..];
@@ -30,10 +27,7 @@ public static class Day3
         for (var i = 9; i >= 0; i--)
         {
             indexOfRightItem = rightSide.IndexOf(i.ToString(), StringComparison.Ordinal);
-            if (indexOfRightItem != -1)
-            {
-                break;
-            }
+            if (indexOfRightItem != -1) break;
         }
 
         var stringRes = $"{leftSide[indexOf]}{rightSide[indexOfRightItem]}";
@@ -61,16 +55,13 @@ public static class Day3
             for (var j = 9; j >= 0; j--)
             {
                 indexOf = remainingSearchSpace.IndexOf(j.ToString(), StringComparison.Ordinal);
-                if (indexOf != -1)
-                {
-                    break;
-                }
+                if (indexOf != -1) break;
             }
 
             workingJoltage += remainingSearchSpace[indexOf];
 
             if (i >= 12) continue;
-            accumulatedIndex += (indexOf + 1);
+            accumulatedIndex += indexOf + 1;
             remainingSearchSpace = bank[accumulatedIndex..^(11 - i)];
         }
 

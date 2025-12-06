@@ -18,19 +18,14 @@ public static class Day4
 
         var accessibleItems = 0;
         for (var y = 0; y < grid.GetLength(0); y++)
+        for (var x = 0; x < grid.GetLength(1); x++)
         {
-            for (var x = 0; x < grid.GetLength(1); x++)
-            {
-                var isLiftable = grid[x, y] == '@'
-                                 && RelativePositions
-                                     .Select(rp => new Position(x + rp.x, y + rp.y))
-                                     .Where(ap => IsWithinBounds(ap, grid))
-                                     .Count(p => grid[p.x, p.y] == '@') < 4;
-                if (isLiftable)
-                {
-                    accessibleItems++;
-                }
-            }
+            var isLiftable = grid[x, y] == '@'
+                             && RelativePositions
+                                 .Select(rp => new Position(x + rp.x, y + rp.y))
+                                 .Where(ap => IsWithinBounds(ap, grid))
+                                 .Count(p => grid[p.x, p.y] == '@') < 4;
+            if (isLiftable) accessibleItems++;
         }
 
         Console.WriteLine(accessibleItems);
@@ -60,23 +55,21 @@ public static class Day4
         var shadowBoard = new char[grid.GetLength(0), grid.GetLength(1)];
 
         for (var y = 0; y < grid.GetLength(0); y++)
+        for (var x = 0; x < grid.GetLength(1); x++)
         {
-            for (var x = 0; x < grid.GetLength(1); x++)
+            if (grid[x, y] == '.')
             {
-                if (grid[x, y] == '.')
-                {
-                    shadowBoard[x, y] = '.';
-                    continue;
-                }
-
-                var isLiftable = grid[x, y] == '@'
-                                 && RelativePositions
-                                     .Select(rp => new Position(x + rp.x, y + rp.y))
-                                     .Where(ap => IsWithinBounds(ap, grid))
-                                     .Count(p => grid[p.x, p.y] == '@') < 4;
-
-                shadowBoard[x, y] = isLiftable ? '.' : '@';
+                shadowBoard[x, y] = '.';
+                continue;
             }
+
+            var isLiftable = grid[x, y] == '@'
+                             && RelativePositions
+                                 .Select(rp => new Position(x + rp.x, y + rp.y))
+                                 .Where(ap => IsWithinBounds(ap, grid))
+                                 .Count(p => grid[p.x, p.y] == '@') < 4;
+
+            shadowBoard[x, y] = isLiftable ? '.' : '@';
         }
 
         return shadowBoard;
@@ -86,12 +79,9 @@ public static class Day4
     {
         var itemCount = 0;
         for (var y = 0; y < grid.GetLength(0); y++)
-        {
-            for (var x = 0; x < grid.GetLength(1); x++)
-            {
-                if (grid[x, y] == '@') itemCount++;
-            }
-        }
+        for (var x = 0; x < grid.GetLength(1); x++)
+            if (grid[x, y] == '@')
+                itemCount++;
 
         return itemCount;
     }
@@ -105,12 +95,8 @@ public static class Day4
     {
         var grid = new char[input[0].Length, input.Length];
         for (var y = 0; y < input.Length; y++)
-        {
-            for (var x = 0; x < input[0].Length; x++)
-            {
-                grid[x, y] = input[y][x];
-            }
-        }
+        for (var x = 0; x < input[0].Length; x++)
+            grid[x, y] = input[y][x];
 
         return grid;
     }
