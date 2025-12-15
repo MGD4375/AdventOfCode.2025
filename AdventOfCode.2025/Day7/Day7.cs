@@ -8,10 +8,7 @@ public static class Day7
         var output = new char[input[0].Length, input.Length];
         var count = 0;
 
-        for (var x = 0; x < input[0].Length; x++)
-        {
-            output[x, 0] = input[0][x];
-        }
+        for (var x = 0; x < input[0].Length; x++) output[x, 0] = input[0][x];
 
         for (var y = 1; y < input.Length; y += 1)
         {
@@ -56,10 +53,8 @@ public static class Day7
         for (var y = 0; y < output.GetLength(1); y++)
         {
             for (var x = 0; x < output.GetLength(0); x++)
-            {
-                if (output[x, y] == 0) Console.Write($" .".PadRight(4));
+                if (output[x, y] == 0) Console.Write(" .".PadRight(4));
                 else Console.Write($" {(long)output[x, y]}".PadRight(4));
-            }
 
             Console.WriteLine();
         }
@@ -83,10 +78,7 @@ public static class Day7
         var input = File.ReadAllLines("./Day7/input.txt");
         var output = new long[input[0].Length, input.Length];
 
-        for (var x = 0; x < input[0].Length; x++)
-        {
-            output[x, 0] = input[0][x] == 'S' ? 1 : 0;
-        }
+        for (var x = 0; x < input[0].Length; x++) output[x, 0] = input[0][x] == 'S' ? 1 : 0;
 
         for (var y = 1; y < input.Length; y += 1)
         {
@@ -94,10 +86,7 @@ public static class Day7
 
             for (var x = 0; x < currentLine.Count; x++)
             {
-                if (output[x, y] > 0)
-                {
-                    continue;
-                }
+                if (output[x, y] > 0) continue;
 
                 if (output[x, y - 1] > 0 && currentLine[x] == '.')
                 {
@@ -121,10 +110,7 @@ public static class Day7
         }
 
         var result = 0L;
-        for (var x = 0; x < input[0].Length; x++)
-        {
-            result += output[x, output.GetLength(1) - 1];
-        }
+        for (var x = 0; x < input[0].Length; x++) result += output[x, output.GetLength(1) - 1];
 
         Console.WriteLine(result);
     }
