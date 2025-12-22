@@ -102,15 +102,9 @@ public static class Day10
                 var newState = ((BitArray)bitArray.Clone()).Xor(button);
                 var key = newState.ToKey();
 
-                if (targetState == key)
-                {
-                    return (true, stepCount: stepCount + 1);
-                }
+                if (targetState == key) return (true, stepCount: stepCount + 1);
 
-                if (visitedStates.Contains(key))
-                {
-                    continue;
-                }
+                if (visitedStates.Contains(key)) continue;
 
                 visitedStates.Add(key);
                 queue.Enqueue((newState, stepCount + 1));
@@ -123,5 +117,8 @@ public static class Day10
 
 public static class BitArrayExtensions
 {
-    public static string ToKey(this BitArray ba) => string.Join("", ba.Cast<bool>().Select(b => b ? '1' : '0'));
+    public static string ToKey(this BitArray ba)
+    {
+        return string.Join("", ba.Cast<bool>().Select(b => b ? '1' : '0'));
+    }
 }
